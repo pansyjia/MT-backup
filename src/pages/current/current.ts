@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EntryDataServiceProvider } from '../../providers/entry-data-service/entry-data-service';
 import { NewMoodPage } from '../new-mood/new-mood';
 import { Entry } from '../../models/entry';
+import { EntryDetailPage } from '../entry-detail/entry-detail';
+
 
 @IonicPage()
 @Component({
@@ -10,7 +12,7 @@ import { Entry } from '../../models/entry';
   templateUrl: 'current.html',
 })
 export class CurrentPage {
-  
+  private entries: Entry[];
   private entry: Entry;
 
   constructor(public navCtrl: NavController, 
@@ -19,13 +21,14 @@ export class CurrentPage {
 
                 this.entryService.getObservable().subscribe(
                   (update) => {
-                      this.entry = this.entryService.getEntries()[0];
-                      console.log(this.entry);
+                      this.entries = this.entryService.getEntries();
+                      this.entry = this.entries[0];
                   },
                   (err) => {
                     console.log('this.entryService.getObservable()[0].subscribe :', err);
                   });
-                this.entry = this.entryService.getEntries()[0];
+                this.entries = this.entryService.getEntries();
+                this.entry = this.entries[0];
   }
 
   ionViewDidLoad() {
@@ -34,7 +37,7 @@ export class CurrentPage {
 
 
   private addNew (){
-    this.navCtrl.push(NewMoodPage);
+    this.navCtrl.push(EntryDetailPage);
   }
 
   private getMood(name: string) {

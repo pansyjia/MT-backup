@@ -3,10 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { Entry } from '../../models/entry';
 import { Mood } from '../../models/mood';
-import { EntryDataServiceProvider } from '../../providers/entry-data-service/entry-data-service'
-
-import { EntryDetailPage } from '../entry-detail/entry-detail';
-import { HomePage } from '../home/home';
+import { EntryDataServiceProvider } from '../../providers/entry-data-service/entry-data-service';
 
 
 @IonicPage()
@@ -16,12 +13,6 @@ import { HomePage } from '../home/home';
 })
 
 export class ChartPage {
-
-
-  private happy = new Mood("happy", 100, "/assets/imgs/Happy-b.png", "#FFCC00", "#fff176");
-  private angry = new Mood("angry", -10, "/assets/imgs/Angry-b.png", "#DB4437", "#ff7762");
-  private sad = new Mood("sad", -20, "/assets/imgs/Sad-b.png", "#039BE5", "#63ccff");
-  private okay = new Mood("okay", 50, "/assets/imgs/Okay-b.png", "#4AAE4E", "#7ee17c");
  
 
  @ViewChild('barChart') barChart;
@@ -138,18 +129,6 @@ this.okayCount = this.entryService.moodCount("okay");
 
    }
 
-   // private moodCount(moodtype:string) {
-   //    let k : any;
-   //    for(k in this.entries)
-   //    {
-   //       var entry = this.entries[k];
-   //       var mood = moodtype;
-   //       var count = this.entries.filter((obj) => obj.mood === mood).length;
-   //    }
-   //    return count;   
-   
-   // }
-
 
 
    
@@ -158,5 +137,3 @@ this.okayCount = this.entryService.moodCount("okay");
 
 
 
-
-// Question: 1. need to calculate avg mood score at the same place next step

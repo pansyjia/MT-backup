@@ -18,27 +18,28 @@
     <ion-row class="select-mood">
       <ion-col class="select-mood" col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3>
         <button class="select-mood" id="happy" (click)="changeMood('happy')" >
-        <img id="happy" style="width: 125px; height: 125px; " src="./assets/imgs/Happy.png">
+        <img *ngIf="!happyselected" id="happy" style="width: 120px; height: 120px; " src="./assets/imgs/happy.png">
+        <img *ngIf="happyselected" id="happy" style="width: 120px; height: 120px; " src="./assets/imgs/happy_selected.png">
         </button>
+
         <button class="select-mood" id="angry" (click)="changeMood('angry')">
-          <img id="angry" style="width: 125px; height: 125px; " src="./assets/imgs/Angry.png" >
+          <img *ngIf="!angryselected" id="angry" style="width: 120px; height: 120px; " src="./assets/imgs/angry.png" >
+          <img *ngIf="angryselected" id="angry" style="width: 120px; height: 120px; " src="./assets/imgs/angry_selected.png" >
         </button>
+
         <button class="select-mood" id="sad"  (click)="changeMood('sad')">
-          <img id="sad" style="width: 125px; height: 125px;  " src="./assets/imgs/Sad.png">
+          <img *ngIf="!sadselected" id="sad" style="width: 120px; height: 120px;  " src="./assets/imgs/sad.png">
+          <img *ngIf="sadselected" id="angry" style="width: 120px; height: 120px; " src="./assets/imgs/sad_selected.png" >
         </button>
+
         <button class="select-mood" id="okay"  (click)="changeMood('okay')">
-          <img id="okay" style="width: 125px; height: 125px; " src="./assets/imgs/Okay.png">
+          <img *ngIf="!okayselected" id="okay" style="width: 120px; height: 120px; " src="./assets/imgs/okay.png">
+          <img *ngIf="okayselected" id="angry" style="width: 120px; height: 120px; " src="./assets/imgs/okay_selected.png" >
         </button>
+
       </ion-col>
     </ion-row>
-      <!-- <ion-item>
-        <ion-img style="width: 132px; height: 132px; background: white;" src="./assets/imgs/Happy.png" ng-click="savemood()"></ion-img>
-        <ion-img style="width: 132px; height: 132px;background: white; " src="./assets/imgs/Angry.png" ></ion-img>
-      </ion-item>
-      <ion-item>
-        <ion-img style="width: 132px; height: 132px; background: white;" src="./assets/imgs/Sad.png"></ion-img>
-        <ion-img style="width: 132px; height: 132px;background: white; " src="./assets/imgs/Okay.png"></ion-img>
-      </ion-item> -->
+    
 
     <h5 style="text-align:center;">Add some notes?</h5>
     <ion-item>
@@ -46,13 +47,10 @@
     </ion-item>
   </ion-list>
 
-  <!-- <ion-list no-lines>
-    <ion-item> -->
-      <button ion-button outline item-end>Cancel </button>
+  
+      <button ion-button outline item-end (click)="cancel()">Cancel </button>
       <button ion-button item-end (click)="saveEntry()">Save</button>
-    <!-- </ion-item>
-  </ion-list> -->
-
+ 
 
 
 </ion-content>

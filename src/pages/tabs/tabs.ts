@@ -14,7 +14,7 @@ import { CurrentPage } from '../current/current';
 export class TabsPage {
 
   ChartView = ChartPage;
-  AddEntry = EntryDetailPage;
+  // AddEntry = EntryDetailPage;
   ListView = HomePage;
   CurrentMood = CurrentPage;
 

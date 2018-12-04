@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
-import { ChartPage } from '../chart/chart';
 import { Entry } from '../../models/entry';
 import { EntryDataServiceProvider } from '../../providers/entry-data-service/entry-data-service'
 import { ToastController } from 'ionic-angular';
+import { CurrentPage } from '../current/current';
+import { Mood } from '../../models/mood';
 
 
 @IonicPage()
@@ -16,6 +16,10 @@ import { ToastController } from 'ionic-angular';
 export class EntryDetailPage {
 
   private entry: Entry;
+  private happyselected = false;
+  private angryselected = false;
+  private sadselected = false;
+  private okayselected = false;
 
   constructor(public navCtrl: NavController,
               public navParams:NavParams,
@@ -40,6 +44,30 @@ export class EntryDetailPage {
 
   private changeMood(name: string){
     this.entry.mood = name;
+    if (name == 'happy') {
+      this.happyselected = true;
+      this.angryselected = false;
+      this.sadselected = false;
+      this.okayselected = false;
+    }
+    if (name == 'angry') {
+      this.happyselected = false;
+      this.angryselected = true;
+      this.sadselected = false;
+      this.okayselected = false;
+    }
+    if (name == 'sad') {
+      this.happyselected = false;
+      this.angryselected = false;
+      this.sadselected = true;
+      this.okayselected = false;
+    }
+    if (name == 'okay') {
+      this.happyselected = false;
+      this.angryselected = false;
+      this.sadselected = false;
+      this.okayselected = true;
+    }
   }
 
   private saveEntry() {
@@ -47,7 +75,7 @@ export class EntryDetailPage {
     let toast = this.toastCtrl.create({
       message: 'A mood record was added successfully',
       duration: 3000,
-      position: 'bottom'
+      position: 'top'
     });
   
     toast.onDidDismiss(() => {
@@ -63,7 +91,15 @@ export class EntryDetailPage {
     console.log("Now I would save the entry: ", newEntry);
     this.entryDataService.addEntry(this.entry);
     // this.navCtrl.pop();
-    this.navCtrl.parent.select(2);
+    // this.navCtrl.parent.select(2);
+    // this.navCtrl.popToRoot();
+    this.navCtrl.push(CurrentPage);
   }
+
+
+  private cancel() {
+    this.navCtrl.pop();
+  }
+
 
 }
