@@ -1,0 +1,43 @@
+page-home {
+
+  ion-content{
+    background-image: url("../assets/imgs/back-d.png");
+}
+
+
+    ion-card {
+        position: relative;
+        text-align: left;
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 6%;
+        font-size: 1.0em;
+        width: 100%;
+        font-weight: bold;
+        color:#000;
+        margin-left: 0.3em;
+      }
+    
+      .card-subtitle {
+        font-size: 0.6em;
+        position: absolute;
+        top: 26%;
+        width: 100%;
+        color: #000;
+        margin-left: 0.3em;
+      }
+
+      .card-img{
+          height: 100%;
+          width: 100%;
+          display: block;
+          margin-left: 50%;
+      }
+
+      // .delete-icon{
+      //   display: inline-block;
+      // }
+
+}

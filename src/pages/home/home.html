@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Mood Records
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="card-list">
+
+  <div *ngIf="checkStatus()">
+    <h4>Welcome to Mood Tracker!</h4>
+    <p>Wherer mood matters!</p>
+      <button ion-button clear icon-only (click)="addNew()">
+      <ion-icon name="create"></ion-icon>
+    </button>      
+  </div>
+
+  <div *ngIf="!checkStatus()">
+
+      <ion-fab right bottom>
+          <button ion-fab color="primary" icon-only (click)="addNew()"><ion-icon name="add"></ion-icon></button>
+      </ion-fab>
+
+ 
+    <ion-list no-lines *ngFor="let entry of entries">
+
+      <ion-item-sliding #item>
+          <ion-item>
+              <img class="card-img" style="width: 125px; height: 125px;" [src]="getMood(entry.mood).image" />
+              <div class="card-title">{{entry.location}}</div>
+              <!-- <div class="card-subtitle">{{entry.timestamp | date: "short"}}</div> -->
+          </ion-item>
+
+          <ion-item-options side="left">
+              <button ion-button expandable color="primary" (click)="editEntry(entry.id)">Edit</button>
+            </ion-item-options>
+          <ion-item-options side="right">
+            <button ion-button expandable color="danger" (click)="deleteEntry(entry.id)">Delete</button>
+          </ion-item-options>
+    </ion-item-sliding>
+      
+    </ion-list>
+  
+
+</div>
+
+</ion-content>
+
+
+
