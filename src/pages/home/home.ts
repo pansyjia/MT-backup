@@ -28,6 +28,10 @@ export class HomePage {
     this.entries = this.entryService.getEntries();
   }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
+  }
+
   private editEntry(entryID: any) {
     // console.log("editing entry ", entryID);
     this.navCtrl.push(EntryDetailPage, {"entryID": entryID});

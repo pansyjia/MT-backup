@@ -3,6 +3,7 @@ import { Entry } from '../../models/entry';
 import { Mood } from '../../models/mood';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs';
 import firebase from 'firebase';
 
 const config = {
@@ -17,18 +18,24 @@ const config = {
 @Injectable()
 export class EntryDataServiceProvider {
   private entries: Entry[] = [];
-  private serviceObserver: Observer<any>;
-  private clientObservable: Observable<any>;
+  private serviceObserver: Subject<any>;
+  private clientObservable: Subject<any>;
+  private serviceSubject: Subject<any>;
   private db: any;
 
   constructor() {
     firebase.initializeApp(config);
     this.db = firebase.database();
     console.log('test service constructor');
-    this.clientObservable = Observable.create(observer => {
-      console.log('test this.clientObservable',  this.clientObservable);
-      this.serviceObserver = observer;
-    });
+    // this.clientObservable = Observable.create(observer => {
+    //   console.log('test this.clientObservable',  this.clientObservable);
+    //   this.serviceObserver = observer;
+    // });
+
+    this.clientObservable = new Subject();
+    this.serviceObserver = this.clientObservable;
+    // this.serviceSubject.next(undefined)
+    // this.serviceSubject.subscribe();
 
     let dataRef = this.db.ref('/entries');
     dataRef.on('value', snapshot => {
